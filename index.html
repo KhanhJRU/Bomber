@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomber Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="info-panel">
+            <div class="stat-item">
+                <span class="stat-label">LIVES</span>
+                <span id="lives-display" class="stat-value">3</span>
+            </div>
+             <div class="stat-item">
+                <span class="stat-label">BOMBS</span>
+                <span id="bombs-display" class="stat-value">1</span>
+            </div>
+             <div class="stat-item">
+                <span class="stat-label">RANGE</span>
+                <span id="range-display" class="stat-value">2</span>
+            </div>
+             <div class="stat-item">
+                <span class="stat-label">SPEED</span>
+                <span id="speed-display" class="stat-value">1</span>
+            </div>
+        </div>
+        <div class="canvas-wrapper">
+            <canvas id="game-canvas"></canvas>
+            <div id="game-over-screen" class="hidden">
+                <h2 id="game-over-message">VICTORY!</h2>
+                <button id="restart-button">Play Again</button>
+            </div>
+        </div>
+         <div id="message-display-container">
+            <p id="message-display">Bots Remaining: 3</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
