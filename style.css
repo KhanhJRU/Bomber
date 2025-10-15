@@ -10,6 +10,17 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* Disable user selection to prevent annoying text highlighting on mobile */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling on mobile */
 }
 
 body {
@@ -19,41 +30,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    padding: 10px;
 }
 
 .game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px; /* Canvas width */
 }
 
 .info-panel {
     background-color: var(--color-panel);
     border-radius: 8px;
-    padding: 12px 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-around;
-    gap: 20px;
-    width: 600px; /* Same as canvas width */
+    width: 100%;
     border: 2px solid #4a5568;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .stat-item {
     text-align: center;
+    flex: 1;
 }
 
 .stat-label {
-    font-size: 10px;
+    font-size: 8px;
     color: #a0aec0;
     letter-spacing: 1px;
 }
 
 .stat-value {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--color-accent);
     display: block;
     margin-top: 4px;
@@ -65,17 +77,22 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    /* Maintain aspect ratio */
+    aspect-ratio: 15 / 13;
 }
 
 #game-canvas {
     display: block;
     background-color: #2c3e50;
+    width: 100%;
+    height: 100%;
 }
 
 #message-display-container {
-    width: 600px;
+    width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     color: #cbd5e0;
     padding: 8px;
     background-color: rgba(45, 55, 72, 0.5);
@@ -84,10 +101,7 @@ body {
 
 #game-over-screen {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(26, 32, 44, 0.85);
     display: flex;
     flex-direction: column;
@@ -98,14 +112,14 @@ body {
 }
 
 #game-over-message {
-    font-size: 48px;
+    font-size: clamp(24px, 10vw, 48px);
     margin-bottom: 24px;
     text-shadow: 4px 4px 0 #000;
 }
 
 #restart-button {
     font-family: var(--font-game);
-    font-size: 16px;
+    font-size: clamp(14px, 5vw, 16px);
     padding: 12px 24px;
     background-color: var(--color-accent);
     color: var(--color-bg);
@@ -123,5 +137,79 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+/* --- MOBILE CONTROLS --- */
+#mobile-controls {
+    display: none; /* Hidden by default on desktop */
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    pointer-events: none; /* Pass clicks through the container */
+}
+
+#dpad {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    pointer-events: auto; /* Enable clicks on the dpad */
+}
+
+.dpad-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dpad-btn:active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#dpad-up { top: 0; left: 50%; transform: translateX(-50%); }
+#dpad-down { bottom: 0; left: 50%; transform: translateX(-50%); }
+#dpad-left { left: 0; top: 50%; transform: translateY(-50%); }
+#dpad-right { right: 0; top: 50%; transform: translateY(-50%); }
+
+#action-buttons {
+    pointer-events: auto; /* Enable clicks on action buttons */
+}
+
+.action-btn {
+    width: 80px;
+    height: 80px;
+    background: rgba(239, 68, 68, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-size: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.action-btn:active {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+/* Show controls on touch devices or small screens */
+@media (hover: none) and (pointer: coarse), (max-width: 800px) {
+    #mobile-controls {
+        display: flex;
+    }
+    body {
+        padding-bottom: 180px; /* Make space for controls */
+    }
 }
 

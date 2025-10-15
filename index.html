@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Bomber Arena</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +39,20 @@
          <div id="message-display-container">
             <p id="message-display">Bots Remaining: 3</p>
         </div>
+        
+        <!-- Mobile Controls -->
+        <div id="mobile-controls">
+            <div id="dpad">
+                <button class="dpad-btn" id="dpad-up">▲</button>
+                <button class="dpad-btn" id="dpad-left">◀</button>
+                <button class="dpad-btn" id="dpad-right">▶</button>
+                <button class="dpad-btn" id="dpad-down">▼</button>
+            </div>
+            <div id="action-buttons">
+                <button class="action-btn" id="bomb-btn">💣</button>
+            </div>
+        </div>
+
     </div>
     <script src="script.js"></script>
 </body>
